@@ -329,12 +329,13 @@ df_sus <- arrow::read_parquet(f_parquet) |>
   select(-HORAOBITO, -NATURAL, -ESC) |>
   na.omit()
 
-readr::write_csv2(df_sus, "data/SUS-Data-Mortalidade-RJ_2015-2018.csv")
+readr::write_rds(df_sus, "data/SUS-Data-Mortalidade-RJ_2015-2018.rds",
+                 compress = 'gz')
 
 glimpse(df_sus)
 ```
 
-Note que a tabela retirada do DataSUS contém  `r nrow(df_sus)` linhas, `r ncol(df_sus)` colunas e é do tipo longa, onde cada caso de mortalidade é representado por uma linha. Temos colunas para a data de óbito (`DTOBITO`), gênero (`SEXO`), ocupação (`OCUP`) e outras. Para visualizar estes dados, teremos que realizar algumas agregações com pacote `dplyr`. Todos os dados apresentados aqui estão disponíveis como arquivo .csv na [página do livro](`r book_page``). 
+Note que a tabela retirada do DataSUS contém  `r nrow(df_sus)` linhas, `r ncol(df_sus)` colunas e é do tipo longa, onde cada caso de mortalidade é representado por uma linha. Temos colunas para a data de óbito (`DTOBITO`), gênero (`SEXO`), ocupação (`OCUP`) e outras. Para visualizar estes dados, teremos que realizar algumas agregações com pacote `dplyr`. Todos os dados apresentados aqui estão disponíveis como arquivo .rds na [página do livro](`r book_page``). 
 
 
 #### Comando `ggplot2`
