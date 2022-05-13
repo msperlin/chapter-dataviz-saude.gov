@@ -4,11 +4,11 @@ author: "Marcelo S. Perlin (UFRGS)"
 date: "15/05/2022"
 bibliography: [references/other_references.bib, references/pkgs_references.bib]
 output:
+  html_document:
+    df_print: paged
   word_document:
     reference_docx: templates/TEMPLATE.docx 
   pdf_document: default
-  html_document:
-    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -18,8 +18,12 @@ knitr::opts_chunk$set(echo = TRUE)
 # usar o default (margens superior e esquerda 2,5cm, inferior e direita 3cm, 
 # Times 12 e espaçamento 1,5).
 
+# build references
 used_pkgs <- renv::dependencies()$Package |>
   unique()
+
+# add microdatasus (not imported in code)
+used_pkgs <- c(used_pkgs, "microdatasus")
 
 knitr::write_bib(x = used_pkgs, file = 'references/pkgs_references.bib')
 
@@ -56,6 +60,8 @@ Como deves esperar, este capítulo assume conhecimento do leitor no uso do R e R
 -   Criação e execução de funções e *scripts* no R;
 -   Entendimento dos diferentes tipos de objetos no R;
 -   Manipulação de `dataframes` com pacote `dplyr` [@R-dplyr], especificamente uso das funções `glimpse`, `group_by`, `count`,  `summarise`, e o operador nativo de _pipeline_ (`|>`).
+
+Todos gráficos apresentados no capítulo são reproduzíveis em seu próprio computador. Os arquivos fonte do texto e código estão disponível em <https://github.com/msperlin/chapter-dataviz-saude.gov>. Para reproduzir os gráficos, basta abrir o arquivo .Rmd no RStudio e compilar para pdf ou .docx.
 
 
 # Princípios e Componentes {#principios}
