@@ -6,4 +6,4 @@
 # Quarto slides
 slides/slides_cache/
 slides/slides_files/
-~lock.*#
+.~lock.*#
